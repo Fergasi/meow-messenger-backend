@@ -25,7 +25,7 @@ const sendMessage = async (req, res, next) => {
 
     if (!content || !chatId) {
       console.log("Invalid data passed into request");
-      return res.sendStatus(400);
+      return res.status(400);
     }
 
     var newMessage = {
@@ -37,7 +37,7 @@ const sendMessage = async (req, res, next) => {
     try {
       var message = await Message.create(newMessage);
 
-      message = await message.populate("sender", "name profilePicture");
+      message = await message.populate("sender", "name profilePicture email");
 
       message = await message.populate("chat");
       message = await User.populate(message, {
