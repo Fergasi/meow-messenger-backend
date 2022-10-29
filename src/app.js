@@ -125,7 +125,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on("typing", (roomId) => socket.in(roomId).emit("typing"));
+  socket.on("typing", (roomId) => socket.in(roomId).emit("typing", roomId));
   socket.on("stop typing", (roomId) => socket.in(roomId).emit("stop typing"));
 
   socket.off("setup", () => {
