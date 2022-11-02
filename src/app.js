@@ -10,12 +10,12 @@ const jwt = require("jsonwebtoken");
 const chatRouter = require("./routes/chatRouter");
 const messageRouter = require("./routes/messageRouter");
 
-const port = process.env.PORT;
+const port = process.env.PORT || 80;
 
 const app = express();
 
 mongoose
-  .connect(process.env.MONGODB_CONNECTION_STRING)
+  .connect(process.env.REACT_APP_MONGODB_CONNECTION_STRING)
   .then(() => console.log("connected to Mongo DB successfully"))
   .catch((error) => console.log("Unable to connect to Mongo. Error: ", error));
 
@@ -46,7 +46,7 @@ app.use(async (req, res, next) => {
     //this returns the jwt data or throws an eror
     const { userId, iat } = jwt.verify(
       sessionToken,
-      process.env.AUTH_SECRET_KEY
+      process.env.REACT_APP_AUTH_SECRET_KEY
     );
 
     //if token is older than 30 days we reject it.

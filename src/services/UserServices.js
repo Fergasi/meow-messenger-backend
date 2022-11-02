@@ -16,7 +16,10 @@ const cleanUser = (userDocument) => {
 
 const getToken = (userId) => {
   //create user token
-  return jwt.sign({ userId, iat: Date.now() }, process.env.AUTH_SECRET_KEY);
+  return jwt.sign(
+    { userId, iat: Date.now() },
+    process.env.REACT_APP_AUTH_SECRET_KEY
+  );
 };
 
 const signOut = (req, res, next) => {
