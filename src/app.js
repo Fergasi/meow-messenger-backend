@@ -19,7 +19,7 @@ mongoose
   .then(() => console.log("connected to Mongo DB successfully"))
   .catch((error) => console.log("Unable to connect to Mongo. Error: ", error));
 
-//setup cors policy specified for cookies and server origin
+//setup cors policy specified for cookies and server origin address
 app.use(
   cors({
     credentials: true,
